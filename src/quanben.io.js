@@ -3,8 +3,8 @@ plugin.exports = class QuanbenBookSource {
   static TYPE = plugin.type.BOOK_SOURCE;
   static GROUP = '🧩自定义';
   static NAME = '全本小说网';
-  static VERSION = '1.0.4';
-  static VERSION_CODE = 5;
+  static VERSION = '1.0.5';
+  static VERSION_CODE = 6;
   static PLUGIN_FILE_URL = 'https://raw.githubusercontent.com/fyxsky/readcat-booksource/main/src/quanben.io.js';
   static BASE_URL = 'https://www.quanben.io';
   static REQUIRE = {
@@ -197,10 +197,10 @@ plugin.exports = class QuanbenBookSource {
         return mergeList(parts.flat());
       };
 
-      // 批次1：并发快速路径（命中快）
+      // 批次1：并发快速路径（命中快，优先真实搜索接口）
       const batch1 = [
-        { url: `${QuanbenBookSource.BASE_URL}/modules/article/search.php`, params: { searchkey: key } },
-        { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'search', key } },
+        { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'book', a: 'search', keywords: key } },
+        { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'book', a: 'search', keyWord: key } },
         { url: `${QuanbenBookSource.BASE_URL}/`, params: { searchkey: key } }
       ];
       let list = await runBatch(batch1, 3500);
@@ -208,7 +208,8 @@ plugin.exports = class QuanbenBookSource {
       // 批次2：仅在批次1没命中时执行（尽量快失败）
       if (!list.length) {
         const batch2 = [
-          { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'search', keyword: key } },
+          { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'book', a: 'search', keyword: key } },
+          { url: `${QuanbenBookSource.BASE_URL}/index.php`, params: { c: 'book', a: 'search', searchkey: key } },
           { url: `${QuanbenBookSource.BASE_URL}/search`, params: { keyword: key } }
         ];
         list = await runBatch(batch2, 3000);
