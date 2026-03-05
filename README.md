@@ -2,12 +2,16 @@
 
 ## 文件
 - `src/quanben.io.js`：稳定发布文件名（建议导入这个，用于后续点“更新”）
+- `src/quanben.io.bookstore.js`：全本小说网书城插件
 
 ## 自动更新（基于 Github Raw）
 1. 首次在 ReadCat 导入本地：`src/quanben.io.js`
 2. 修改 `src/quanben.io.js` 里的 `PLUGIN_FILE_URL` 为你的真实 Raw 地址（必须以 `.js` 结尾）
 3. 每次发版只更新同一路径文件 `src/quanben.io.js`，并递增 `VERSION_CODE`
 4. 在 ReadCat 点击“更新”即可拉取最新版
+
+书城插件更新地址：
+- `https://raw.githubusercontent.com/fyxsky/readcat-booksource/main/src/quanben.io.bookstore.js`
 
 ## 功能
 - `search(searchkey)`：站内搜索 + 书名模糊匹配（书名包含搜索词即可）
@@ -35,6 +39,7 @@
 ## 导入
 在 ReadCat 的插件管理中导入：
 - `src/quanben.io.js`
+- `src/quanben.io.bookstore.js`
 
 ## 自动完整性校验（免手工）
 提供脚本：
