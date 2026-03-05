@@ -11,8 +11,8 @@ plugin.exports = class QuanbenBookSource {
     fastCatalog: {
       label: '目录模式（快速目录）',
       type: 'boolean',
-      default: true,
-      description: '目录模式：开启=快速目录（先展示前300章，速度优先）；关闭=完整目录（一次展示全量目录）。'
+      default: false,
+      description: '默认不要开启。目录模式：开启=快速目录（先展示前300章，速度优先）；关闭=完整目录（一次展示全量目录）。'
     },
     deepCatalog: {
       label: '深度目录补全',
