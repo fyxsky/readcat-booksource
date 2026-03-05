@@ -5,8 +5,7 @@ plugin.exports = class QuanbenBookSource {
   static NAME = '全本小说网';
   static VERSION = '1.0.3';
   static VERSION_CODE = 4;
-  // 发布后请替换为你自己的 raw 地址（必须以 .js 结尾）
-  static PLUGIN_FILE_URL = 'https://raw.githubusercontent.com/yourname/yourrepo/main/src/quanben.io.js';
+  static PLUGIN_FILE_URL = 'https://raw.githubusercontent.com/fyxsky/readcat-booksource/main/src/quanben.io.js';
   static BASE_URL = 'https://www.quanben.io';
   static REQUIRE = {
     fastCatalog: {
